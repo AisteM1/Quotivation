@@ -1,7 +1,7 @@
 import React from "react";
 import { Filter } from "react-feather";
 
-function CategoryForm({ categories, category, handleCategoryChange }) {
+const  CategoryForm = ({ categories, category, handleCategoryChange })  => {
     return (
 <div className='category-form'>
   <form 
@@ -9,13 +9,13 @@ function CategoryForm({ categories, category, handleCategoryChange }) {
    onSubmit={(e) => {
     e.preventDefault();
    }}
-   
-   >
 
+   >
+    
     < Filter />
      <label htmlFor='category'>Filter Quotes:</label>
      <select id='category' name='category' value={category} onChange={handleCategoryChange}>
-        {categories.map ((category => (
+        {categories.map ((category) => (
          <option key={category} value={category}>
         ))}
      </select>

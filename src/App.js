@@ -56,11 +56,17 @@ function App() {
     console.log ("Max number of quotes reached. Please delete one to add a new one. ")
    }
   };
+
+  const removeFromFavorites = (quoteId) => {
+    const updatedFavorites = favoriteQuotes.filter((quote) => quote.id !== quoteId)
+    setFavoriteQuotes(updatedFavorites);
+
+  }
   return (
     <div className='App'>
       <Header />
       <main>
-        < FavoriteQuotes favoriteQuotes={FavoriteQuotes} maxFaves={maxFaves}/>
+        < FavoriteQuotes favoriteQuotes={FavoriteQuotes} maxFaves={maxFaves} removeFromFavorites={removeFromFavorites}/>
         <section class='favorite-quotes'>
           <div className= "wrapper quotes">
             <h3>Top 3 favorite quotes</h3>
@@ -76,6 +82,7 @@ function App() {
          category={category} 
         handleCategoryChange={handleCategoryChange}
         addToFavorites={addToFavorites}
+        favoriteQuotes={favoriteQuotes}
         />
       )}
       </main>
