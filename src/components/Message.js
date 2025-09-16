@@ -2,25 +2,23 @@ import React, { useEffect } from "react";
 
 
 const Message = ({ messageText, removeMessage }) => {
-
     useEffect(() => {
-const messsageTimeout = setTimeout (()=> {
+        const messageTimeout = setTimeout (() => {
          removeMessage();
+        }, 1500);
+    window.setTimeout(messageTimeout);
 
-        }, 1500)
-
-  window.setTimeout(messageTimeout);
-  return () => window.clearTimeout(messageTimeout)
-
-    })
+    return () => window.clearTimeout(messageTimeout);
+   });
     return (
         <div className='message'>
         <p>{messageText}</p>
+
         <span className='close-message' onClick={removeMessage}>
-            X
+            x
             </span>
         </div>
-    )
-}
+    );
+};
 
 export default Message;

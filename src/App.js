@@ -22,12 +22,12 @@ function App() {
 
     const fetchQuotes = async () => {
       try {
-        setLoading(true)
-        const response = await fetch (quotes.Url)
-        const results = await response.json ()
+        setLoading(true);
+        const response = await fetch (quotesUrl);
+        const results = await response.json ();
         setQuotes(results)
-      }catch (e) {
-        console.log("There was an error!", error,e)
+      } catch (error) {
+        console.log("There was an error!", error);
       }
       setLoading (false)
     };
@@ -50,18 +50,20 @@ function App() {
   const addToFavorites = (quoteId) => {
    const selectedQuote = quotes.find (quote => quote.id === quoteId)
 
-   const alreadyFavorite = favoriteQuotes.find((favorite)=> favorite.id === selectedQuote.id);
+   const alreadyFavorite = favoriteQuotes.find((favorite) => favorite.id === selectedQuote.id);
 
     if (alreadyFavorite) {
-      setMessageText("You already favorited this quote!")
-      setShowMessage(true)
-    } else if  (favoriteQuotes.length < maxFaves) {
-    setFavoriteQuotes([...favoriteQuotes, selectedQuote])
+      removeFromFavorites(quoteId);
+     
+    } else {
+      if (favoriteQuotes.length < maxFaves) {
      setMessageText("Added to Favorites!");
-       setShowMessage(true)
+     setShowMessage(true);
+     setFavoriteQuotes([...favoriteQuotes, selectedQuote])
    } else {
-    setMessageText("Max number of quotes reached. Please delete one to add a new one. ")
-      setShowMessage(true)
+    setMessageText("Max number of quotes reached. Please delete one to add a new one. ");
+    setShowMessage(true)
+   }
    }
   };
 
@@ -73,26 +75,22 @@ function App() {
     const updatedFavorites = favoriteQuotes.filter((quote) => quote.id !== quoteId)
     setFavoriteQuotes(updatedFavorites);
 
-  }
+  }; 
+
   return (
     <div className='App'>
-      <Header />
       {showMessage && <Message messageText={messageText} removeMessage={removeMessage} />}
+      <Header />
       <main>
-        < FavoriteQuotes favoriteQuotes={FavoriteQuotes} maxFaves={maxFaves} removeFromFavorites={removeFromFavorites}/>
-        <section class='favorite-quotes'>
-          <div className= "wrapper quotes">
-            <h3>Top 3 favorite quotes</h3>
-            {favoriteQuotes.length >= 0 && JSON.stringify(favoriteQuotes)}
-            </div>
-        </section>
+        < FavoriteQuotes favoriteQuotes={favoriteQuotes} maxFaves={maxFaves} removeFromFavorites={removeFromFavorites} />
+
         {loading ? (
           <Loader />
         ) : ( 
       <Quotes
         filteredQuotes={filteredQuotes} 
         categories={categories} 
-         category={category} 
+        category={category} 
         handleCategoryChange={handleCategoryChange}
         addToFavorites={addToFavorites}
         favoriteQuotes={favoriteQuotes}
