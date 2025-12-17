@@ -166,7 +166,7 @@ footer {
   line-height: 20px;
   font-weight: 700;
   background-color: #ffe7a8;
-} 
+}
 
 .favorite-quotes .quote-card h3 {
   width: 90%;
@@ -186,7 +186,7 @@ footer {
   padding-bottom: 2rem;
   margin-bottom: 2rem;
   text-align: center;
-  color: #8A5A00;
+  color: #8a5a00;
 }
 
 .favorite-quotes .favorite-quotes-description p {
@@ -309,7 +309,7 @@ footer {
   transform: scale(1.2);
 }
 
-.quote-card div>h3 {
+.quote-card div > h3 {
   margin: 3rem 0;
   font-weight: 400;
 }
