@@ -9,7 +9,7 @@ function FavoriteQuoteCard({ quote, removeFromFavorites, listPosition }) {
       >
         x
       </span>
-      <h3>quote.text</h3>
+      <h3>{quote.text}</h3>
       <p>{quote.author}</p>
     </li>
   );
